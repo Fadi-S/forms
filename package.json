@@ -19,6 +19,7 @@
     "@heroicons/react": "^2.2.0",
     "@reduxjs/toolkit": "^2.0.1",
     "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.0",
     "react-reorder": "^3.0.0-alpha.7",
