@@ -6,6 +6,7 @@ interface Form {
   name: string
   slug: string
   questions: Question[]
+  data: Record<string, any>
 }
 
 interface Question {

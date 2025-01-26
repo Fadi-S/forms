@@ -169,7 +169,10 @@ export default function ShowQuiz() {
 
   return (
       <div className="py-6 h-full">
-        <h1 className="text-2xl text-center font-bold">{form.name}</h1>
+        <h1 className="text-3xl text-center font-bold">{form.name}</h1>
+        <div dir="auto" className="w-full flex items-center justify-center mt-3">
+          <span className="font-semibold text-lg text-gray-800 text-center">{form.data?.description}</span>
+        </div>
 
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-4 w-full mt-12" dir="auto">
