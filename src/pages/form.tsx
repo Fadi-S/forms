@@ -7,7 +7,7 @@ export default function ShowQuiz() {
   const { data, isLoading } = useGetFormQuery("junior-6/استبيان-معسكر-٢٠٢٥")
   const [answers, setAnswers] = useState<Record<string, any>>({})
 
-  const [submitForm] = useSubmitFormMutation()
+  const [submitForm, { isSuccess, isLoading: isLoadingForm}] = useSubmitFormMutation()
 
   // Initialize answers state when form data is loaded
   useEffect(() => {
@@ -84,7 +84,7 @@ export default function ShowQuiz() {
                       {...provided.dragHandleProps}
                       className="border border-gray-900 px-2 py-1 flex items-center gap-2 w-full"
                     >
-                      <span>{option.name}</span>
+                      <span>{index+1}) {option.name}</span>
                     </div>
                   )}
                 </Draggable>
@@ -154,6 +154,12 @@ export default function ShowQuiz() {
     submitForm({ answers })
   }
 
+  if(!isLoadingForm && isSuccess) {
+    return <div className="py-6 h-full">
+      <h1 className="text-2xl text-center font-bold text-green-800">تم تسجيل الاستبيان بنجاح</h1>
+    </div>
+  }
+
   // Show loading state while data is being fetched
   if (isLoading || !data) {
     return <Loading />
@@ -162,7 +168,6 @@ export default function ShowQuiz() {
   const form = data.quiz
 
   return (
-    <DragDropContext onDragEnd={handleDragEnd}>
       <div className="py-6 h-full">
         <h1 className="text-2xl text-center font-bold">{form.name}</h1>
 
@@ -184,6 +189,5 @@ export default function ShowQuiz() {
           </button>
         </form>
       </div>
-    </DragDropContext>
   )
 }
