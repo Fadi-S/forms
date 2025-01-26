@@ -52,10 +52,18 @@ export const formsApiSlice = createApi({
       query: () => `/quizzes/junior-6/استبيان-معسكر-٢٠٢٥`,
       providesTags: (_, __, id) => [{ type: "Forms", id }],
     }),
+
+    submitForm: build.mutation<void, { id: string, answers: Record<string, any> }>({
+      query: ({ answers }) => ({
+        url: `/quizzes/junior-6/استبيان-معسكر-٢٠٢٥/submit`,
+        method: "POST",
+        body: { questions: answers },
+      }),
+    }),
   }),
 })
 
-export const { useGetFormQuery } = formsApiSlice
+export const { useGetFormQuery, useSubmitFormMutation } = formsApiSlice
 
 export type { Form, Question, Option };
 

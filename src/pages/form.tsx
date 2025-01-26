@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react"
-import { Option, Question, QuestionType, useGetFormQuery } from "../features/forms/formsApiSlice"
+import { Option, Question, QuestionType, useGetFormQuery, useSubmitFormMutation } from "../features/forms/formsApiSlice"
 import Loading from "../components/loading"
 import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 
 export default function ShowQuiz() {
   const { data, isLoading } = useGetFormQuery("junior-6/استبيان-معسكر-٢٠٢٥")
   const [answers, setAnswers] = useState<Record<string, any>>({})
+
+  const [submitForm] = useSubmitFormMutation()
 
   // Initialize answers state when form data is loaded
   useEffect(() => {
@@ -148,7 +150,8 @@ export default function ShowQuiz() {
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form answers:", answers)
+
+    submitForm({ answers })
   }
 
   // Show loading state while data is being fetched
