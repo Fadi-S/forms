@@ -131,7 +131,7 @@ export default function ShowQuiz() {
   // Render options for Choose type questions
   function renderChooseOptions(question: Question) {
     return question.options.map((option) => (
-      <div key={option.id} className="flex items-center my-2">
+      <div key={`option-` + option.id} className="flex items-center my-2">
         <input
           id={option.id.toString()}
           name={question.id.toString()}
@@ -151,7 +151,7 @@ export default function ShowQuiz() {
   function renderMultipleChooseOptions(question: Question) {
     return <div className="space-y-2 mt-3">
       {question.options.map((option) => (
-        <div className="flex gap-3" key={option.id}>
+        <div className="flex gap-3" key={`option-` + option.id}>
           <div className="flex h-6 shrink-0 items-center">
             <div className="group grid size-5 grid-cols-1">
               <input
