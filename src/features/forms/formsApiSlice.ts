@@ -28,6 +28,7 @@ enum QuestionType {
   Choose = 1,
   Written = 2,
   Order = 3,
+  MultipleChoose = 6,
 }
 
 interface FormApiResponse {
